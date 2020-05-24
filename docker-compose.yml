@@ -1,6 +1,18 @@
 web:
-   build: .
+   build: docker/web
    ports:
       - "80:80"
    volumes:
       - ./docroot:/var/www
+#db:
+#   build: docker/db
+#   ports:
+#      - 3306:3306
+
+db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+   
